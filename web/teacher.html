@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>法律案例讲解 · 教师端</title>
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <h1>⚖️ 法律案例讲解系统<span class="tag">教师端</span></h1>
+    <p class="sub">维护案例、讲解章节与课堂备注；保存草稿、发布内容并导出讲义。</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 口令登录 -->
+  <div id="loginView" class="login-card">
+    <h2>教师登录</h2>
+    <p>请输入教师口令（默认 <code>teacher123</code>，由服务端 TEACHER_TOKEN 配置）。</p>
+    <input type="password" id="tokenInput" placeholder="教师口令" autocomplete="off">
+    <div class="err" id="loginErr"></div>
+    <div class="login-foot">
+      <button id="loginBtn">进入教师端</button>
+      <a href="index.html" style="font-size:13px;color:var(--muted);">← 返回学生端</a>
+    </div>
+  </div>
+
+  <!-- 主界面 -->
+  <div id="appView" hidden>
+    <div class="teacher-layout">
+      <aside class="side-panel">
+        <h2>我的案例</h2>
+        <button id="newCaseBtn" style="width:100%;margin-bottom:12px;">＋ 新建案例</button>
+        <div id="caseItems"></div>
+        <div style="margin-top:14px;text-align:center;">
+          <a href="index.html" target="_blank" style="font-size:13px;color:var(--muted);">在新窗口打开学生端</a>
+          <br>
+          <button class="link" id="logoutBtn" style="margin-top:6px;">退出登录</button>
+        </div>
+      </aside>
+
+      <section id="editor" class="editor">
+        <div id="editorPlaceholder" class="empty">← 请从左侧选择一个案例，或点击「新建案例」开始备课。</div>
+        <div id="editorBody" hidden>
+          <div class="row" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+            <h2>案例编辑</h2>
+            <span id="caseStatus"></span>
+          </div>
+
+          <div class="actions-bar">
+            <button id="saveBtn">💾 保存（保持当前状态）</button>
+            <button class="secondary" id="publishBtn">📢 发布案例</button>
+            <button class="secondary" id="unpublishBtn">🔒 下架为草稿</button>
+            <button class="secondary" id="exportBtn">📄 导出 Markdown 讲义</button>
+            <label style="display:flex;align-items:center;gap:6px;margin:0;font-weight:400;color:var(--muted);font-size:13px;">
+              <input type="checkbox" id="includeNotes" style="width:auto;"> 讲义附带课堂备注
+            </label>
+            <button class="danger" id="deleteBtn" style="margin-left:auto;">删除案例</button>
+          </div>
+
+          <div class="grid-2">
+            <div style="grid-column:1/-1;">
+              <label>案例名称 *</label>
+              <input type="text" id="f_title">
+            </div>
+            <div><label>案号</label><input type="text" id="f_caseNo"></div>
+            <div><label>审理法院</label><input type="text" id="f_court"></div>
+            <div><label>裁判日期</label><input type="text" id="f_date" placeholder="例：2025-03-12"></div>
+            <div><label>案例类别</label><input type="text" id="f_category" placeholder="例：合同纠纷"></div>
+            <div style="grid-column:1/-1;"><label>案情摘要</label><textarea id="f_summary" rows="3"></textarea></div>
+            <div style="grid-column:1/-1;"><label>案件事实</label><textarea id="f_rows" rows="6"></textarea></div>
+          </div>
+
+          <div class="section">
+            <h3>讲解章节</h3>
+            <p style="font-size:13px;color:var(--muted);margin-top:0;">
+              章节可单独保存草稿 / 发布；案例发布后，学生只能看到「已发布」的章节。
+            </p>
+            <div id="chapterList"></div>
+            <button class="secondary small" id="addChapterBtn">＋ 新增章节</button>
+          </div>
+
+          <div class="section">
+            <h3>课堂备注（仅教师可见）</h3>
+            <p style="font-size:13px;color:var(--muted);margin-top:0;">备注不会出现在学生端，导出讲义时默认也不包含。</p>
+            <div id="noteList"></div>
+            <div style="display:flex;gap:8px;">
+              <textarea id="newNote" rows="2" placeholder="记录课堂提问安排、重点提醒、待补充事项…"></textarea>
+              <button id="addNoteBtn" style="white-space:nowrap;">添加备注</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>法律案例教学系统 · 草稿仅教师可见，发布后学生可读</footer>
+
+<script src="assets/api.js"></script>
+<script src="assets/teacher.js"></script>
+</body>
+</html>

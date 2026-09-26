@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>法律案例讲解 · 学生端</title>
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <h1>⚖️ 法律案例讲解系统<span class="tag">学生端 · 只读</span></h1>
+    <p class="sub">这里展示老师已发布的案例与讲解章节，供课前预习与课后复习使用。</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 列表视图 -->
+  <div id="listView">
+    <div class="toolbar no-print">
+      <input type="search" id="searchInput" placeholder="搜索案例名称 / 法院 / 类别 / 案号…">
+      <button class="secondary" id="reloadBtn">刷新</button>
+      <a class="small" href="teacher.html" style="margin-left:auto;font-size:13px;color:var(--muted);">教师入口 →</a>
+    </div>
+    <div id="caseList" class="cards"></div>
+    <p id="emptyTip" class="empty" hidden>📭 暂无已发布的案例，请稍后再来。</p>
+    <p id="loadError" class="empty" hidden style="color:var(--red);">内容加载失败，请确认 Java 服务已启动。</p>
+  </div>
+
+  <!-- 详情视图 -->
+  <div id="detailView" hidden>
+    <button class="link no-print" id="backBtn">← 返回案例列表</button>
+    <article id="caseDetail"></article>
+    <div class="toolbar no-print" style="margin-top:26px;">
+      <button id="printBtn">🖨 打印 / 另存 PDF 讲义</button>
+    </div>
+  </div>
+</main>
+
+<footer>法律案例教学系统 · 学生仅可阅读教师已发布内容</footer>
+
+<script src="assets/api.js"></script>
+<script src="assets/student.js"></script>
+</body>
+</html>
