@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>法律案例讲解稿系统</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">⚖</span>
+      <div>
+        <h1>法律案例讲解稿系统</h1>
+        <p class="subtitle">案例 · 讲解章节 · 课堂备注 · 发布与讲义导出</p>
+      </div>
+    </div>
+    <nav class="role-switch" id="roleSwitch">
+      <button data-role="student" class="active">学生阅读端</button>
+      <button data-role="teacher">教师工作台</button>
+    </nav>
+  </header>
+
+  <!-- ================= 学生端 ================= -->
+  <main id="studentView" class="workspace">
+    <aside class="list-pane">
+      <div class="list-head">
+        <h2>已发布案例</h2>
+        <span class="hint" id="studentCount"></span>
+      </div>
+      <ul class="case-list" id="studentList"></ul>
+    </aside>
+    <section class="reader-pane" id="studentReader">
+      <div class="empty-tip">请从左侧选择一个已发布案例进行阅读</div>
+    </section>
+  </main>
+
+  <!-- ================= 教师端 ================= -->
+  <main id="teacherView" class="workspace hidden">
+    <aside class="list-pane">
+      <div class="list-head">
+        <h2>我的案例</h2>
+        <button class="btn btn-small btn-primary" id="btnCreate">＋ 新建案例</button>
+      </div>
+      <ul class="case-list" id="teacherList"></ul>
+    </aside>
+    <section class="editor-pane" id="teacherEditor">
+      <div class="empty-tip">从左侧选择案例编辑，或点击“新建案例”开始备课</div>
+    </section>
+  </main>
+
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
